@@ -1,4 +1,4 @@
-export interface Joke {
+export interface JokeModel {
     category: [];
     created_at: string;
     icon_url: string;

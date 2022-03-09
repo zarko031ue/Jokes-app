@@ -2,7 +2,7 @@
     <div *ngFor="let joke of jokes ">
         <p>{{joke.value}}</p>
     </div>
-    <button class="btn btn-success text-center">Joke</button>
+    <button class="btn btn-success text-center" (click)="getJoke()">Joke</button>
     <br>
     <br>
     <form [formGroup]="form" (ngSubmit)="onSubmit(form)" >

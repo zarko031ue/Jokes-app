@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { JokeService } from '../service/http.service';
-import { Joke } from './joke.interface';
+import { JokeModel } from './joke.interface';
 
 @Component({
   selector: 'app-jokes',
@@ -9,7 +9,7 @@ import { Joke } from './joke.interface';
   styleUrls: ['./jokes.component.css'],
 })
 export class JokesComponent implements OnInit {
-  jokes: Joke[] = [];
+  jokes: JokeModel[] = [];
   categories: any[] = [];
   selectedCategory: string = '';
 
