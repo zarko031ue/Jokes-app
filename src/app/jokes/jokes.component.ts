@@ -1,41 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '../service/http.service';
+import { JokeService } from '../service/http.service';
+import { Joke } from './joke.interface';
 
 @Component({
   selector: 'app-jokes',
   templateUrl: './jokes.component.html',
-  styleUrls: ['./jokes.component.css']
+  styleUrls: ['./jokes.component.css'],
 })
 export class JokesComponent implements OnInit {
-  jokes: any = [];
-  categories: any = [];
+  jokes: Joke[] = [];
+  categories: any[] = [];
+  selectedCategory: string = '';
 
-  constructor(private service: HttpService, private fb: FormBuilder) {}
+  constructor(private jokeService: JokeService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.displayCategories();
+    this.getCategories();
+    this.getJoke();
   }
 
   form = this.fb.group({
-    selectOption: [ Validators.required],
+    categories: [''],
   });
 
-  displayJoke(): void {
-    this.service.getJokes().subscribe((jokes: any) => {
-      this.jokes = jokes;
+  onSelect() {
+    this.selectedCategory = this.form.controls['categories'].value;
+    this.categoryExist(this.selectedCategory);
+  }
+ 
+  getJoke(): void {
+    this.jokeService.getJokes().subscribe((joke: any) => {
+      this.jokes.push(joke);
     });
   }
 
-  displayCategories() {
-    this.service.getCategories().subscribe((categories: any) => {
+  getCategories() {
+    this.jokeService.getCategories().subscribe((categories: any) => {
       this.categories = categories;
     });
   }
 
-  categoryExist() {
-    this.service.categoryExists().subscribe((cat: any) => {
-      console.log(cat);
+  categoryExist(category: string) {
+    this.jokeService.categoryExists(category).subscribe((joke: any) => {
+      this.jokes = [];
+      this.jokes.push(joke);
     });
   }
 

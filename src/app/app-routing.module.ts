@@ -5,7 +5,6 @@ import { JokesComponent } from './jokes/jokes.component';
 const routes: Routes = [
   { path: '', redirectTo: '/jokes', pathMatch: 'full'},
   {path: 'jokes', component: JokesComponent},
-  {path: 'jokes/random', component: JokesComponent}
 
 ];
 

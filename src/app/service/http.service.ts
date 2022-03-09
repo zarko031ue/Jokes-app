@@ -4,20 +4,21 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
-
-  constructor(private http: HttpClient) { }
+export class JokeService {
+  private URL = 'https://api.chucknorris.io/jokes/'
+  
+  constructor(private http: HttpClient) {}
 
   
   getJokes(){
-    return this.http.get('https://api.chucknorris.io/jokes/random')
+    return this.http.get(this.URL + 'random')
   }
 
   getCategories(){
-    return this.http.get('https://api.chucknorris.io/jokes/categories')
+    return this.http.get( this.URL + 'categories')
   }
 
-  categoryExists(){
-    return this.http.get('https://api.chucknorris.io/jokes/random?category={category}')
+  categoryExists(category: string){
+    return this.http.get(this.URL + `random?category=${category}`)
   }
 }
