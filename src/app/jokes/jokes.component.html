@@ -1,1 +1,19 @@
-<p>jokes works!</p>
+<div class="container">
+    <button (click)="displayJoke()">Joke</button>
+    <p>{{jokes.value}}</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <div class="input-group">
+            <select class="form-select" formControlName = "selectOption" id="inputGroupSelect04" aria-label="Example select with button addon">
+              <option *ngFor="let category of categories">{{category}}</option>
+            </select>
+
+            <button class="btn btn-outline-secondary" 
+                    [routerLink]="['/jokes','random']" 
+                    [queryParams]="{category: '{category}'}" 
+                    (click)="categoryExist()" 
+                    type="button">Button
+            </button>
+        </div>
+    </form>
+</div>

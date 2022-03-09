@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,18 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  
+  getJokes(){
+    return this.http.get('https://api.chucknorris.io/jokes/random')
+  }
+
+  getCategories(){
+    return this.http.get('https://api.chucknorris.io/jokes/categories')
+  }
+
+  categoryExists(){
+    return this.http.get('https://api.chucknorris.io/jokes/random?category={category}')
+  }
 }
