@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { JokeService } from '../service/http.service';
-import { JokeModel } from './joke.interface';
+import { Joke } from './joke.interface';
 
 @Component({
   selector: 'app-jokes',
@@ -9,8 +9,8 @@ import { JokeModel } from './joke.interface';
   styleUrls: ['./jokes.component.css'],
 })
 export class JokesComponent implements OnInit {
-  jokes: JokeModel[] = [];
-  categories: any[] = [];
+  jokes: Joke[] = [];
+  categories: string[] = [];
   selectedCategory: string = '';
 
   constructor(private jokeService: JokeService, private fb: FormBuilder) {}
@@ -30,19 +30,20 @@ export class JokesComponent implements OnInit {
   }
  
   getJoke(): void {
-    this.jokeService.getJokes().subscribe((joke: any) => {
+    this.jokeService.getJokes().subscribe((joke: Joke) => {
       this.jokes.push(joke);
+      console.log(joke);
     });
   }
 
   getCategories() {
-    this.jokeService.getCategories().subscribe((categories: any) => {
+    this.jokeService.getCategories().subscribe((categories: string[]) => {
       this.categories = categories;
     });
   }
 
   categoryExist(category: string) {
-    this.jokeService.categoryExists(category).subscribe((joke: any) => {
+    this.jokeService.categoryExists(category).subscribe((joke: Joke) => {
       this.jokes = [];
       this.jokes.push(joke);
     });

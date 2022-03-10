@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Joke } from '../jokes/joke.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,14 @@ export class JokeService {
 
   
   getJokes(){
-    return this.http.get(this.URL + 'random')
+    return this.http.get<Joke>(this.URL + 'random');
   }
 
   getCategories(){
-    return this.http.get( this.URL + 'categories')
+    return this.http.get<string[]>(this.URL + 'categories');
   }
 
   categoryExists(category: string){
-    return this.http.get(this.URL + `random?category=${category}`)
+    return this.http.get(this.URL + `random?category=${category}`);
   }
 }
