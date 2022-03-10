@@ -4,3 +4,8 @@
     margin: 0 auto;
 }
 
+.joke{
+    background-color: rgb(215, 230, 230);
+    padding: 15px;
+    border-radius: 10px;
+}

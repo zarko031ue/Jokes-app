@@ -1,18 +1,25 @@
 <div class="wrapper">
-    <div *ngFor="let joke of jokes ">
-        <p>{{joke.value}}</p>
-    </div>
-    <button class="btn btn-success text-center" (click)="getJoke()">Joke</button>
-    <br>
-    <br>
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" >
-        <div class="input-group">
-            <select (change)="onSelect()" class="form-select" formControlName = "categories" id="inputGroupSelect04" aria-label="Example select with button addon">
-              <option value="" disabled>Choose category</option>
-              <option *ngFor="let category of categories" [ngValue]="category">{{category}}</option>
-            </select>
+    <div class="row">
+        <div class="col">
+            <div class="joke">
+                <button class="btn btn-success text-center mb-1" (click)="getJoke()">Joke</button>
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form)" >
+                    <div class="input-group">
+                        <select (change)="onSelect()" class="form-select" formControlName = "categories" id="inputGroupSelect04" aria-label="Example select with button addon">
+                          <option value="" disabled>Choose category</option>
+                          <option *ngFor="let category of categories" [ngValue]="category">{{category}}</option>
+                        </select>
+                    </div>
+                </form>
+                <div *ngFor="let joke of jokes ">
+                    <p>{{joke.value}}</p>
+                </div>
+            </div>
         </div>
-    </form>
+        <div class="col">
+            
+        </div>
+    </div>
 </div>
    
     

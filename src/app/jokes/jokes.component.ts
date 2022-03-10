@@ -31,6 +31,7 @@ export class JokesComponent implements OnInit {
  
   getJoke(): void {
     this.jokeService.getJokes().subscribe((joke: Joke) => {
+      this.jokes =[];
       this.jokes.push(joke);
       console.log(joke);
     });
